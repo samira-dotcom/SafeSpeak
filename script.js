@@ -1,40 +1,46 @@
-const socket = io('https://safespeak-server.onrender.com'); // We'll set up a server later
+let username = "";
+const chatBox = document.getElementById("chat-box");
+const loginSection = document.getElementById("login-section");
+const chatSection = document.getElementById("chat-section");
+const sendBtn = document.getElementById("send-btn");
+const messageInput = document.getElementById("message-input");
+const ventBtn = document.getElementById("vent-btn");
+const ventingInput = document.getElementById("venting-input");
 
-const loginPage = document.getElementById('loginPage');
-const chatPage = document.getElementById('chatPage');
-const loginBtn = document.getElementById('loginBtn');
-const usernameInput = document.getElementById('usernameInput');
-const sendBtn = document.getElementById('sendBtn');
-const messageInput = document.getElementById('messageInput');
-const messages = document.getElementById('messages');
-const onlineUsers = document.getElementById('onlineUsers');
-
-let username = '';
-
-loginBtn.addEventListener('click', () => {
-    username = usernameInput.value.trim();
-    if (username) {
-        socket.emit('join', username);
-        loginPage.style.display = 'none';
-        chatPage.style.display = 'block';
+// Handle Login
+document.getElementById("login-btn").addEventListener("click", () => {
+    username = document.getElementById("username").value;
+    if (username !== "") {
+        loginSection.style.display = "none";
+        chatSection.style.display = "block";
+        alert("Welcome " + username + "! You are now logged in.");
+    } else {
+        alert("Please enter a username.");
     }
 });
 
-sendBtn.addEventListener('click', () => {
-    const message = messageInput.value.trim();
-    if (message) {
-        socket.emit('message', message);
-        messageInput.value = '';
+// Handle sending chat message
+sendBtn.addEventListener("click", () => {
+    const message = messageInput.value;
+    if (message !== "") {
+        const messageElement = document.createElement("div");
+        messageElement.textContent = username + ": " + message;
+        chatBox.appendChild(messageElement);
+        messageInput.value = "";  // Clear input
+        chatBox.scrollTop = chatBox.scrollHeight;  // Scroll to bottom
     }
 });
 
-socket.on('message', (data) => {
-    const div = document.createElement('div');
-    div.textContent = `${data.username}: ${data.message}`;
-    messages.appendChild(div);
-    messages.scrollTop = messages.scrollHeight;
-});
-
-socket.on('onlineUsers', (count) => {
-    onlineUsers.textContent = `People online: ${count}`;
+// Handle venting
+ventBtn.addEventListener("click", () => {
+    const vent = ventingInput.value;
+    if (vent !== "") {
+        const ventElement = document.createElement("div");
+        ventElement.style.fontStyle = "italic";
+        ventElement.style.color = "#555";
+        ventElement.textContent = "Anonymous Vent: " + vent;
+        chatBox.appendChild(ventElement);
+        ventingInput.value = "";  // Clear input
+        chatBox.scrollTop = chatBox.scrollHeight;  // Scroll to bottom
+    }
 });
