@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeSpeak - Chat</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>SafeSpeak - Real-Time Chat</h1>
+
+    <!-- Username input (can be random for simplicity) -->
+    <div>
+        <label for="username">Enter a username:</label>
+        <input type="text" id="username" placeholder="Your Username" />
+    </div>
+
+    <!-- Chat container -->
+    <div id="chat-container">
+        <!-- Messages will appear here -->
+    </div>
+
+    <!-- Chat input and send button -->
+    <input type="text" id="chat-input" placeholder="Type your message..." />
+    <button id="send-chat">Send Message</button>
+
+    <h2>Venting</h2>
+    <textarea id="vent-textarea" placeholder="Vent here..."></textarea>
+    <button id="submit-btn">Submit Vent</button>
+
+    <script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
