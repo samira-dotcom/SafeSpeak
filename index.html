@@ -2,36 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SafeSpeak - Chat</title>
+    <title>SafeSpeak - Real-Time Anonymous Chat</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <h1>SafeSpeak - Real-Time Chat</h1>
-
-    <!-- Username input (can be random for simplicity) -->
-    <div>
-        <label for="username">Enter a username:</label>
-        <input type="text" id="username" placeholder="Your Username" />
+    <div id="loginPage" class="login-page">
+        <h1>Welcome to SafeSpeak</h1>
+        <input type="text" id="usernameInput" placeholder="Choose a username">
+        <button id="loginBtn">Enter</button>
     </div>
 
-    <!-- Chat container -->
-    <div id="chat-container">
-        <!-- Messages will appear here -->
+    <div id="chatPage" class="chat-page" style="display:none;">
+        <div id="onlineUsers"></div>
+        <div id="messages"></div>
+        <input type="text" id="messageInput" placeholder="Type your message...">
+        <button id="sendBtn">Send</button>
     </div>
 
-    <!-- Chat input and send button -->
-    <input type="text" id="chat-input" placeholder="Type your message..." />
-    <button id="send-chat">Send Message</button>
-
-    <h2>Venting</h2>
-    <textarea id="vent-textarea" placeholder="Vent here..."></textarea>
-    <button id="submit-btn">Submit Vent</button>
-
-    <script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js"></script>
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
     <script src="script.js"></script>
-
 </body>
 </html>
